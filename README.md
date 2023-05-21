@@ -1,11 +1,11 @@
 # Ivan's Zoo
 
-The Ivan's Zoo is a web application that allows users to manage and organize animals and zookeepers within a zoo. It provides features for adding, deleting, and viewing animals and zookeepers, as well as an admin panel for administrative tasks.
+Ivan's Zoo is a web application that allows users to manage and organize animals and zookeepers within a zoo. It provides features for adding, deleting, and viewing animals and zookeepers, as well as an admin panel for administrative tasks.
 
 ## Technologies Used
 
 - Frontend: React
-- Backend: NestJS
+- Backend: NestJS w/ TypeORM
 - Database: PostgreSQL
 
 ## Getting Started
@@ -32,7 +32,7 @@ npm install
 
 1. Start the backend server: npm run start:dev
 2. Start the frontend server: npm start
-3. 3. Open your web browser and visit `http://localhost:3006` to access Ivan's Zoo.
+3. Open your web browser and visit `http://localhost:3006` to access Ivan's Zoo.
 
 
 
@@ -42,4 +42,5 @@ npm install
 - Add new animals and zookeepers
 - Delete animals and zookeepers
 - Admin panel for administrative tasks
+- Fully functional authentication and registration
 - Different actions depending on the user role

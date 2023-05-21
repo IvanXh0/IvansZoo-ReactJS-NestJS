@@ -1,0 +1,27 @@
+.zookeeper-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.zookeeper-card .card {
+  max-width: 400px;
+  flex: 1 1 300px;
+}
+
+#zookeeper-form {
+  width: 600px;
+}
+
+.animal-property {
+  color: #e57c23; /* Orange color */
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.zookeeper-property {
+  color: #ed2b2a; /* Orange color */
+  font-weight: bold;
+  margin-right: 5px;
+}

@@ -1,0 +1,10 @@
+.user-info {
+  background-color: #e57c23;
+  display: inline-block;
+  border: none;
+  width: 80px;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  margin-left: 5px;
+}

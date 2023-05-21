@@ -1,0 +1,15 @@
+.animal-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.animal-card .card {
+  max-width: 400px;
+  flex: 1 1 300px;
+}
+
+#animal-form {
+  width: 600px;
+}

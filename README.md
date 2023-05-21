@@ -12,8 +12,29 @@ The Ivan's Zoo is a web application that allows users to manage and organize ani
 
 ### Prerequisites
 
-- Node.js (version X.X.X)
-- PostgreSQL (version X.X.X)
+- Node.js 
+- PostgreSQL
+
+### Installation
+
+1. Clone the repository:
+2. Install dependencies for the frontend:
+cd IvansZoo-ReactJS-NestJS/client
+npm install
+
+3. Install dependencies for the backend:
+cd ../server
+npm install
+
+4. Create a PostgreSQL database named `zoo`.
+
+### Usage
+
+1. Start the backend server: npm run start:dev
+2. Start the frontend server: npm start
+3. 3. Open your web browser and visit `http://localhost:3006` to access Ivan's Zoo.
+
+
 
 ## Features
 

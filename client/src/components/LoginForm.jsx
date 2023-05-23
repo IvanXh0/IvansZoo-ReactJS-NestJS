@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "../assets/login.json";
 import logoutAnimation from "../assets/logout.json";
-import {ToastContainer ,toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -38,13 +38,12 @@ const LoginForm = () => {
     } catch (error) {
       console.log("Sorry something went wrong", error.response.data);
       if (error) {
-
-        setPassword("")
-        setUsername("")
-      toast.error("Invalid credentials, try again.", {
-        position: "top-right",
-        autoClose: 2000 
-      })
+        setPassword("");
+        setUsername("");
+        toast.error("Invalid credentials, try again.", {
+          position: "top-right",
+          autoClose: 2000,
+        });
       }
     }
   };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import {
   Modal,
   ModalHeader,
@@ -9,6 +8,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
+import api from '../auth/axiosInstance'
 
 const AddZookeeperModal = ({updateZookeepers}) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,7 +23,7 @@ const AddZookeeperModal = ({updateZookeepers}) => {
   const handleAddNewZookeeper = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("api/zookeepers/", {
+      await api.post("api/zookeepers/", {
         name,
         age: parseInt(age),
         location,

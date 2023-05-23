@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { toast } from "react-toastify";
+import api from './auth/axiosInstance'
 
 const AdminPanel = () => {
   const [show, setShow] = useState(false);
@@ -57,7 +58,7 @@ const AdminPanel = () => {
     }
 
     try {
-      await axios.patch(`/api/zookeepers/${selectedZookeeperId}/animals`, {
+      await api.patch(`/api/zookeepers/${selectedZookeeperId}/animals`, {
         animalIds: [selectedAnimalId],
       });
 
@@ -96,7 +97,7 @@ const AdminPanel = () => {
 
   const fetchAnimals = async () => {
     try {
-      const response = await axios.get("/api/animals");
+      const response = await api.get("/api/animals");
       setAnimals(response.data);
     } catch (error) {
       console.error("Error fetching animals:", error);
@@ -105,7 +106,7 @@ const AdminPanel = () => {
 
   const fetchZookeepers = async () => {
     try {
-      const response = await axios.get("/api/zookeepers");
+      const response = await api.get("/api/zookeepers");
       setZookeepers(response.data);
     } catch (error) {
       console.error("Error fetching zookeepers:", error);

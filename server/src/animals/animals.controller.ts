@@ -35,6 +35,7 @@ import { RolesEnum } from 'src/auth/roles.enum';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiTags('Animals')
 @Controller('animals')
 export class AnimalsController {
@@ -44,6 +45,7 @@ export class AnimalsController {
     description: 'All animals in the zoo',
   })
   @Get()
+  @Roles(RolesEnum.admin, RolesEnum.user)
   @UsePipes(ValidationPipe)
   getAllAnimals(@Query() query: AnimalQueryDto): Promise<AnimalResponseDto[]> {
     return this.animalsService.getAllAnimals(query);

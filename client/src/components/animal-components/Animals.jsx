@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import axios from "axios";
 import AnimalList from "./AnimalList";
 import ViewAnimalModal from "./ViewAnimalModal";
 import "./Animals.css";
 import { toast } from "react-toastify";
 import EditAnimalModal from "./EditAnimalModal";
+import api from "../auth/axiosInstance";
 
 const Animals = () => {
   const [animals, setAnimals] = useState([]);
@@ -21,7 +21,7 @@ const Animals = () => {
 
   const fetchAnimals = async () => {
     try {
-      const response = await axios.get("/api/animals");
+      const response = await api.get("/api/animals");
       setAnimals(response.data);
     } catch (error) {
       console.error("Error fetching animals:", error);
@@ -35,7 +35,7 @@ const Animals = () => {
 
   const handleDeleteAnimal = async (id) => {
     try {
-      await axios.delete(`/api/animals/${id}`);
+      await api.delete(`/api/animals/${id}`);
       toast("Successfully deleted animal!", {
         position: "top-right",
         autoClose: 1300,
@@ -53,7 +53,7 @@ const Animals = () => {
 
   const handleUpdateAnimal = async (updatedAnimal) => {
     try {
-      await axios.put(`/api/animals/${updatedAnimal.id}`, updatedAnimal);
+      await api.put(`/api/animals/${updatedAnimal.id}`, updatedAnimal);
 
       toast("Successfully updated animal!", {
         position: "top-right",

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import ZookeepersList from "./ZookeepersList";
 import ViewZookeeperModal from "./ViewZookeeperModal";
 import "./Zookeepers.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EditZookeeperModal from "./EditZookeeperModal";
+import api from "../auth/axiosInstance.jsx";
 
 const Zookeepers = () => {
   const [zookeepers, setZookeepers] = useState([]);
@@ -21,16 +21,16 @@ const Zookeepers = () => {
 
   const fetchZookeepers = async () => {
     try {
-      const response = await axios.get("/api/zookeepers");
+      const response = await api.get("/api/zookeepers");
       setZookeepers(response.data);
     } catch (error) {
-      console.log("Error fetching zookeepers", error);
+      console.error("Error fetching zookeepers", error);
     }
   };
 
   const handleZookeeperClick = async (id) => {
     try {
-      const response = await axios.get(`/api/zookeepers/${id}`);
+      const response = await api.get(`/api/zookeepers/${id}`);
       setSelectedZookeeper(response.data);
       setShowModal(true);
     } catch (error) {
@@ -40,7 +40,7 @@ const Zookeepers = () => {
 
   const handleDeleteZookeeper = async (id) => {
     try {
-      await axios.delete(`/api/zookeepers/${id}`);
+      await api.delete(`/api/zookeepers/${id}`);
 
       setZookeepers((prevZookeepers) =>
         prevZookeepers.filter((zookeeper) => zookeeper.id !== id)
@@ -62,7 +62,7 @@ const Zookeepers = () => {
 
   const handleUpdateZookeeper = async (updatedZookeeper) => {
     try {
-      await axios.put(
+      await api.put(
         `/api/zookeepers/${updatedZookeeper.id}`,
         updatedZookeeper,
       );
@@ -105,7 +105,7 @@ const Zookeepers = () => {
         showModal={showModal}
         onCloseModal={handleCloseModal}
         selectedZookeeper={selectedZookeeper}
-        onEditClick={handleEditZookeeper} 
+        onEditClick={handleEditZookeeper}
       />
       <EditZookeeperModal
         showModal={showEditModal}

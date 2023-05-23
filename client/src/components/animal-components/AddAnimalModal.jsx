@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import {
   Button,
   Card,
@@ -9,6 +8,7 @@ import {
   ModalHeader,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
+import api from "../auth/axiosInstance";
 
 const AddAnimalModal = ({ updateAnimals }) => {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +30,7 @@ const AddAnimalModal = ({ updateAnimals }) => {
   const handleAddNewAnimal = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/animals", {
+      await api.post("/api/animals", {
         name,
         type,
         age: parseInt(age),
@@ -49,7 +49,7 @@ const AddAnimalModal = ({ updateAnimals }) => {
         autoClose: 1300,
       });
       updateAnimals();
-      setShowModal(false)
+      setShowModal(false);
     } catch (error) {
       console.log("Something went wrong", error);
     }

@@ -41,6 +41,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiTags('Zookeepers')
 @Controller('zookeepers')
 export class ZookeepersController {
@@ -52,6 +53,7 @@ export class ZookeepersController {
   })
   @Get()
   @UsePipes(ValidationPipe)
+  @Roles(RolesEnum.admin, RolesEnum.user)
   getAllZookeepers(
     @Query() query: ZookeeperQueryDto,
   ): Promise<ZookeeperResponseDto[]> {
@@ -60,6 +62,7 @@ export class ZookeepersController {
 
   @Post()
   @UsePipes(ValidationPipe)
+  @Roles(RolesEnum.admin)
   @ApiCreatedResponse({
     status: 201,
     description: 'The added zookeeper',
@@ -71,6 +74,7 @@ export class ZookeepersController {
   }
 
   @Get(':id')
+  @Roles(RolesEnum.admin, RolesEnum.user)
   @ApiResponse({
     status: 200,
     description: 'The found zookeeper',
@@ -88,6 +92,7 @@ export class ZookeepersController {
     description: 'The specified zookeeper has not been found',
   })
   @Put(':id')
+  @Roles(RolesEnum.admin)
   @UsePipes(ValidationPipe)
   editZookeeper(
     @Param('id') id: string,
@@ -100,6 +105,7 @@ export class ZookeepersController {
     status: 200,
     description: 'Zookeeper successfully deleted',
   })
+  @Roles(RolesEnum.admin)
   @Delete(':id')
   deleteZookeeper(@Param('id') id: string): Promise<void> {
     return this.zookeepersService.deleteZookeeper(id);
@@ -113,6 +119,7 @@ export class ZookeepersController {
     status: 404,
     description: 'Zookeeper not found.',
   })
+  @Roles(RolesEnum.admin)
   @Patch(':id/animals')
   assignAnimal(@Param('id') id: string, @Body() body: AssignAnimalDto) {
     return this.zookeepersService.assignAnimal(id, body.animalIds);
